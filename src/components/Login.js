@@ -50,10 +50,6 @@ function Login() {
                 
             </form>
 
-            
-
-
-
         </div>
     )
 }
