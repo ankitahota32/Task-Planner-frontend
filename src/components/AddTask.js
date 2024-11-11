@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import axios from "axios";
 import './AddTask.css'
+import { useNavigate } from "react-router-dom";
 
 
 function AddTask() {
@@ -9,28 +10,34 @@ function AddTask() {
     const [editTask, setEditTask] = useState(null);
     const [updatedText, setUpdatedText] = useState("");
     const userId = localStorage.getItem('userId');
-    
+    const navigate = useNavigate();
+
     useEffect(() => {
         if (!userId) {
+
             console.error("User ID not found in localStorage");
             return;
         }
-            axios.get("http://localhost:8000/AddTask/get-task", {
-                headers: {"user-id": userId} 
-            })
-                .then((response) => setTasks(response.data))
-                .catch(e => {
-                    console.log(e);
-                });
+        console.log(userId);
+        // Clear tasks state on component load to avoid showing old user's tasks 
+        setTasks([]);
+
+        axios.get("http://localhost:8000/AddTask/get-task", {
+            headers: { "user-id": userId }
+        })
+            .then((response) => setTasks(response.data))
+            .catch(e => {
+                console.log(e);
+            });
     }, [userId]);
-    
-    const add = () => { // Add the task
-        if (task.trim()!== "") {
+
+    const add = () => { // Add the task 
+        if (task.trim() !== "") {
             axios.post("http://localhost:8000/AddTask", { task, User_id: userId })
 
-            
+
                 .then((response) => {
-                    setTasks((prevTasks)=>[...prevTasks,response.data]);
+                    setTasks((prevTasks) => [...prevTasks, response.data]);
                     setTask("");
                 })
                 .catch((error) => {
@@ -40,8 +47,8 @@ function AddTask() {
             alert("Please enter a task");
         }
     };
-    
-    const deleteTask = (taskId) => { //Delete Task
+
+    const deleteTask = (taskId) => { //Delete Task 
         axios.delete(`http://localhost:8000/AddTask/${taskId}`)
             .then(() => {
                 setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
@@ -71,39 +78,42 @@ function AddTask() {
         }
     };
 
-     
+
     return (
         <div id="AddTask-page">
+            <button id="logout-button" onClick={() => {
+                localStorage.removeItem("userId");
+                navigate("/");
+            }}>Logout</button>
             <h1><b><i>Task Planner</i></b></h1>
-                <input id="input" type="text" value={task} onChange={(e) => setTask(e.target.value)} placeholder="Enter a task" />
+            <input id="input" type="text" value={task} onChange={(e) => setTask(e.target.value)} placeholder="Enter a task" />
             <button id="add-button" onClick={add}>Add Me</button>
             <ul>
 
-                {tasks.map((task) => 
-                <li key={task._id} style={{ padding: "10px", borderBottom: "1px solid #ddd" }}>
-                    {task.task}
-                    <button id="delete-button" onClick={() => deleteTask(task._id)}>Delete</button>
-                    
-                            {editTask && editTask._id === task._id ? (
-                                <>
-                                    <input id="input" type="text" value={updatedText} onChange={(e) => setUpdatedText(e.target.value)} />
-                                    <button id="Save-button" onClick={handleSave}>Save</button>
-                                    <button id="Cancle-button" onClick={() => setEditTask(null)}>Cancel</button>
-                                </>
-                            ) : (
-                                    <>
-                                    
-                                        <button id="Edit-button" onClick={() => handleEditClick(task)}>Edit</button>
-                                    </>
-                                )}
+                {tasks.map((task) =>
+                    <li key={task._id} style={{ padding: "10px", borderBottom: "1px solid #ddd" }}>
+                        {task.task}
+                        <button id="delete-button" onClick={() => deleteTask(task._id)}>Delete</button>
 
-                    
-                        </li>
-            )}
+                        {editTask && editTask._id === task._id ? (
+                            <>
+                                <input id="input" type="text" value={updatedText} onChange={(e) => setUpdatedText(e.target.value)} />
+                                <button id="Save-button" onClick={handleSave}>Save</button>
+                                <button id="Cancle-button" onClick={() => setEditTask(null)}>Cancel</button>
+                            </>
+                        ) : (
+                            <>
+                                <button id="Edit-button" onClick={() => handleEditClick(task)}>Edit</button>
+                            </>
+                        )}
+
+
+                    </li>
+                )}
             </ul>
         </div>
-        )
-        
+    )
+
 }
-        
-   export default AddTask
+
+export default AddTask

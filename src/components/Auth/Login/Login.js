@@ -17,25 +17,25 @@ function Login() {
 
         try {
             await axios.post("http://localhost:8000/", {
-               email,password
+                email, password
             })
                 .then(res => {
                     if (res.data.status === "exist") {
                         const userId = res.data.userId;
                         localStorage.setItem("userId", userId);
                         navigate("/AddTask", { state: { userId } })
-                        
+
                     }
-                    else if(res.data.status === "Does not exist") {
-                    alert("User have not Signed up")
-                }
+                    else if (res.data.status === "Does not exist") {
+                        alert("User have not Signed up")
+                    }
                 })
                 .catch(e => {
                     alert("Wrong Deatils")
                     console.log(e);
-            })
+                })
         }
-        catch (e){
+        catch (e) {
             console.log(e);
         }
     }
@@ -44,7 +44,7 @@ function Login() {
     return (
         <div className="login-container">
             <form action="POST" className="login-form">
-            <h1 className="h2"><i>Login</i></h1>
+                <h1 className="h2"><i>Login</i></h1>
                 <input type="email" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" name="username" id="username" />
                 <input type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="username" name="username" id="password" />
 
@@ -52,7 +52,7 @@ function Login() {
 
 
                 <Link to="/signup" className="login-link">Signup Page</Link>
-                
+
             </form>
 
         </div>
