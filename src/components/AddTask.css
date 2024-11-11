@@ -1,0 +1,105 @@
+#AddTask-page {
+  width: 90%;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid #522694;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  color: #453c3c;
+  margin-bottom: 20px;
+  font-family: "Arial", sans-serif;
+}
+
+#input {
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  outline: none;
+}
+
+#add-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #2b123e;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#add-button:hover {
+  background-color: #7956c4;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  margin-bottom: 8px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 8px 12px;
+  margin-left: 8px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#delete-button {
+  background-color: #621d19;
+  color: #fff;
+}
+
+#delete-button:hover {
+  background-color: #d45a5a;
+}
+
+#Edit-button {
+  background-color: #2f475a;
+  color: #fff;
+}
+
+#Edit-button:hover {
+  background-color: #1976d2;
+}
+
+#Save-button {
+  background-color: #3d623e;
+  color: #fff;
+}
+
+#Save-button:hover {
+  background-color: #388e3c;
+}
+
+#Cancle-button {
+  background-color: #81312b;
+  color: #fff;
+}
+
+#Cancle-button:hover {
+  background-color: #cb4747;
+}

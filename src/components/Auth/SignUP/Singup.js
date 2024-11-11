@@ -1,29 +1,31 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
 import './Singup.css'
 
 
-function Login() {
-    const history=useNavigate();
+function SignUp() {
 
-    const [email,setEmail]=useState('')
-    const [password,setPassword]=useState('')
+    const history = useNavigate();
 
-    async function submit(e){
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+     async function submit(e){
         e.preventDefault();
 
         try{
-
             await axios.post("http://localhost:8000/signup",{
-                email,password
+                email, password
+                
             })
             .then(res=>{
-                if(res.data==="exist"){
+                if(res.data === "exist"){
                     alert("User already exists")
                 }
-                else if(res.data==="Does not exist"){
-                    history("/home",{state:{id:email}})
+                else if (res.data.status === "Does not exist") {
+                    history("/AddTask", { state: { id: email } })
+                    
                 }
             })
             .catch(e=>{
@@ -46,7 +48,7 @@ function Login() {
             <form action="POST" className="signup-form">
             <h1 className="h2"><i>Sign-Up</i></h1>
                 <input type="email" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email"  name="username" id="username"/>
-                <input type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" name="username" id="username"/>
+                <input type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" name="password" id="password"/>
 
                 <button type="submit" onClick={submit}>Signup</button>
 
@@ -61,4 +63,4 @@ function Login() {
     )
 }
 
-export default Login
+export default SignUp

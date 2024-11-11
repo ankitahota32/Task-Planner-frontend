@@ -1,7 +1,7 @@
 import './App.css';
-import Home from "./components/Home.js"
-import Login from "./components/Login.js";
-import Signup from "./components/Singup.js"
+import AddTask from "./components/AddTask.js"
+import Login from "./components/Auth/Login/Login.js"
+import Signup from "./components/Auth/SignUP/Singup.js"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 
@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login/>}/>
           <Route path="/signup" element={<Signup/>}/>
-          <Route path="/home" element={<Home/>}/>
+          <Route path="/AddTask" element={<AddTask />} />
         </Routes>
       </Router>
     </div>
