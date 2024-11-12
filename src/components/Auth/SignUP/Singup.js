@@ -15,7 +15,7 @@ function SignUp() {
         e.preventDefault();
 
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/signup`, {
+            await axios.post('https://task-planner-backend-uu0b.onrender.com/signup', {
                 email, password
 
             })

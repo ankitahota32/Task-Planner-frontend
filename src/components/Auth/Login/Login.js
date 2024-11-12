@@ -16,7 +16,7 @@ function Login() {
 
 
         try {
-            await axios.post(`${process.env.REACT_APP_API_URL}/`, {
+            await axios.post('https://task-planner-backend-uu0b.onrender.com/', {
                 email, password
             })
                 .then(res => {
