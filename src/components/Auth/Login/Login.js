@@ -31,7 +31,7 @@ function Login() {
                     }
                 })
                 .catch(e => {
-                    alert("Wrong Deatils")
+                    alert("Wrong Details")
                     console.log(e);
                 })
         }

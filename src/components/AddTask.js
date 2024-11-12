@@ -14,15 +14,13 @@ function AddTask() {
 
     useEffect(() => {
         if (!userId) {
-
             console.error("User ID not found in localStorage");
             return;
         }
         console.log(userId);
-        // Clear tasks state on component load to avoid showing old user's tasks 
         setTasks([]);
 
-        axios.get("https://task-planner-backend-1.onrender.com/AddTask/get-task", {
+        axios.get(`${process.env.REACT_APP_API_URL}/AddTask/get-task`, {
             headers: { "user-id": userId }
         })
             .then((response) => setTasks(response.data))
@@ -33,7 +31,7 @@ function AddTask() {
 
     const add = () => { // Add the task 
         if (task.trim() !== "") {
-            axios.post("/AddTask", { task, User_id: userId })
+            axios.post(`${process.env.REACT_APP_API_URL}/AddTask/get-task`, { task, User_id: userId })
 
 
                 .then((response) => {
@@ -49,7 +47,7 @@ function AddTask() {
     };
 
     const deleteTask = (taskId) => { //Delete Task 
-        axios.delete(`https://task-planner-backend-1.onrender.com/AddTask/${taskId}`)
+        axios.delete(`${process.env.REACT_APP_API_URL}/AddTask/${taskId}`)
             .then(() => {
                 setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
             })
@@ -68,7 +66,7 @@ function AddTask() {
             return;
         }
         try {
-            const response = await axios.put(`https://task-planner-backend-1.onrender.com/AddTask/${editTask._id}`, { task: updatedText });
+            const response = await axios.put(`${process.env.REACT_APP_API_URL}/AddTask/${editTask._id}`, { task: updatedText });
             const updatedTask = response.data;
             setTasks(tasks.map((task) => (task._id === editTask._id ? updatedTask : task)));
             setEditTask(null);

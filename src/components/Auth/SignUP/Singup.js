@@ -29,7 +29,7 @@ function SignUp() {
                     }
                 })
                 .catch(e => {
-                    alert("wrong details")
+                    alert("Wrong Details")
                     console.log(e);
                 })
 
