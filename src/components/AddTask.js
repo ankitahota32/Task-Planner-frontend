@@ -22,7 +22,7 @@ function AddTask() {
         // Clear tasks state on component load to avoid showing old user's tasks 
         setTasks([]);
 
-        axios.get("http://localhost:8000/AddTask/get-task", {
+        axios.get("https://task-planner-backend-1.onrender.com/AddTask/get-task", {
             headers: { "user-id": userId }
         })
             .then((response) => setTasks(response.data))
@@ -33,7 +33,7 @@ function AddTask() {
 
     const add = () => { // Add the task 
         if (task.trim() !== "") {
-            axios.post("http://localhost:8000/AddTask", { task, User_id: userId })
+            axios.post("/AddTask", { task, User_id: userId })
 
 
                 .then((response) => {
@@ -49,7 +49,7 @@ function AddTask() {
     };
 
     const deleteTask = (taskId) => { //Delete Task 
-        axios.delete(`http://localhost:8000/AddTask/${taskId}`)
+        axios.delete(`https://task-planner-backend-1.onrender.com/AddTask/${taskId}`)
             .then(() => {
                 setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
             })
@@ -68,7 +68,7 @@ function AddTask() {
             return;
         }
         try {
-            const response = await axios.put(`http://localhost:8000/AddTask/${editTask._id}`, { task: updatedText });
+            const response = await axios.put(`https://task-planner-backend-1.onrender.com/AddTask/${editTask._id}`, { task: updatedText });
             const updatedTask = response.data;
             setTasks(tasks.map((task) => (task._id === editTask._id ? updatedTask : task)));
             setEditTask(null);
@@ -77,6 +77,7 @@ function AddTask() {
             console.error("Failed to update task", error);
         }
     };
+    //https://task-planner-backend-1.onrender.com/
 
 
     return (
