@@ -1,7 +1,7 @@
 import './App.css';
-import AddTask from "./components/AddTask.js"
-import Login from "./components/Auth/Login/Login.js"
-import Signup from "./components/Auth/SignUP/Singup.js"
+import AddTask from "./components/AddTask.js";
+import Login from "./components/Auth/Login/Login.js";
+import Signup from "./components/Auth/SignUP/Singup.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 

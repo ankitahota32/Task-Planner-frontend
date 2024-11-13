@@ -75,7 +75,6 @@ function AddTask() {
             console.error("Failed to update task", error);
         }
     };
-    //https://task-planner-backend-1.onrender.com/
 
 
     return (
