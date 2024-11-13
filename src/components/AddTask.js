@@ -24,8 +24,8 @@ function AddTask() {
             headers: { "user-id": userId }
         })
             .then((response) => setTasks(response.data))
-            .catch(e => {
-                console.log(e);
+            .catch(error => {
+                console.error('Error from backend:', error.response ? error.response.data : error.message);
             });
     }, [userId]);
 
