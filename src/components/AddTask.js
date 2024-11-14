@@ -47,7 +47,7 @@ function AddTask() {
     };
 
     const deleteTask = (taskId) => { //Delete Task 
-        axios.delete(`http://localhost:8000//AddTask/${taskId}`)
+        axios.delete(`http://localhost:8000/AddTask/${taskId}`)
             .then(() => {
                 setTasks((prevTasks) => prevTasks.filter((task) => task._id !== taskId));
             })

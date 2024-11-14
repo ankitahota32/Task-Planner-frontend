@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import axios from "axios"
 import { useNavigate, Link } from "react-router-dom"
-import './Singup.css'
+import './Signup.css'
 
 
 function SignUp() {
@@ -23,7 +23,7 @@ function SignUp() {
                     if (res.data === "exist") {
                         alert("User already exists")
                     }
-                    else if (res.data.status === "Does not exist") {
+                    else if (res.data.status === "User created successfully") {
                         history("/")
 
                     }
